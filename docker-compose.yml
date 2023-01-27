@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  book_api:
+    build: .
+    ports:
+      - "80:80"
+    networks:
+      - backend
+    depends_on:
+      sql_book:
+        condition: service_started
+  sql_book:
+    image: "mysql"
+    volumes:
+      - C:\Users\dani_\Documents\db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: db
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: custom-backend
+    driver: bridge
+
