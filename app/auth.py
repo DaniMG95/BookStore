@@ -14,6 +14,7 @@ from pydantic import ValidationError
 from app.models.user import User
 from app.db import get_db
 
+from jose import jws
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(
