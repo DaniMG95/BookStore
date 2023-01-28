@@ -2,9 +2,7 @@ from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer, SecurityScopes
 from fastapi import Depends, status, HTTPException, Security
 from datetime import datetime, timedelta
-
 from sqlalchemy.orm import Session
-
 from app.const import ALGORITHM, SECRET_KEY
 from typing import Union
 from jose import JWTError, jwt
@@ -49,8 +47,9 @@ def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None
     return encoded_jwt
 
 
-async def get_current_user(security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme),
-                           db: Session = Depends(get_db)):
+async def get_current_user(
+    security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)
+):
     if security_scopes.scopes:
         authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
     else:
@@ -82,9 +81,7 @@ async def get_current_user(security_scopes: SecurityScopes, token: str = Depends
     return user
 
 
-async def get_current_active_user(
-    current_user: User = Security(get_current_user, scopes=["me"])
-):
+async def get_current_active_user(current_user: User = Security(get_current_user, scopes=["me"])):
     if not current_user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
