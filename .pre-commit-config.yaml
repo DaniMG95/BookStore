@@ -10,3 +10,11 @@ repos:
     hooks:
     - id: flake8
       stages: [commit]
+-   repo: local
+    hooks:
+      - id: unittests
+        name: run unit tests
+        entry: python -m unittest
+        language: system
+        pass_filenames: false
+        args: ["discover"]
