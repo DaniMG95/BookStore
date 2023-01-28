@@ -2,19 +2,15 @@ from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer, SecurityScopes
 from fastapi import Depends, status, HTTPException, Security
 from datetime import datetime, timedelta
-
 from sqlalchemy.orm import Session
-
 from app.const import ALGORITHM, SECRET_KEY
 from typing import Union
 from jose import JWTError, jwt
-
 from app.schemas.token import TokenData
 from pydantic import ValidationError
 from app.models.user import User
 from app.db import get_db
 
-from jose import jws
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(
@@ -23,7 +19,7 @@ oauth2_scheme = OAuth2PasswordBearer(
 )
 
 
-def verify_password(plain_password, sdaasddsa, hashed_password):
+def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 
