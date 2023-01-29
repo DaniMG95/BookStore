@@ -7,7 +7,7 @@ on:
 
 env:
   ## Sets environment variable
-  API_KEY: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
+  mascot: Mona
 
 jobs:
   build:
@@ -15,8 +15,7 @@ jobs:
     steps:
     - name: Use variables
       run: |
-        echo "ACCESS_TOKEN_EXPIRE_MINUTES : ${{ env.API_KEY }}"
-        echo "SECRET_KEY : ${{ vars.SECRET_KEY }}"
+        echo 'Hi ${{ env.mascot }}'
 #    - uses: actions/checkout@v3
 #    - name: Set up Python 3.10
 #      uses: actions/setup-python@v3
