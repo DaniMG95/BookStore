@@ -6,8 +6,6 @@ from sqlalchemy.orm import Session
 from app.db import get_db
 from app.models.user import User
 
-
-
 router = APIRouter(
     prefix="/user",
     tags=["user"],
@@ -40,14 +38,15 @@ async def get_all_users(db: Session = Depends(get_db)):
 
 
 @router.delete("/{user_id}")
-async def get_user(user_id: int, db: Session = Depends(get_db)):
+async def delete_user(user_id: int, db: Session = Depends(get_db)):
     await User.remove_id(db=db, id=user_id)
     return {"details": "User deleted"}
 
 
 @router.post("/{book_id}", response_model=UserSchema)
-async def buy_book(book_id: int, db: Session = Depends(get_db), current_user: User = Security(get_current_active_user,
-                                                                                              scopes=["buy"])):
+async def buy_book(
+    book_id: int, db: Session = Depends(get_db), current_user: User = Security(get_current_active_user, scopes=["buy"])
+):
     await User.insert_book(db=db, user_id=current_user.id, book_id=book_id)
     db_user = await User.get_id(db=db, id=current_user.id)
     return db_user

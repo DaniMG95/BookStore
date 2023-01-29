@@ -16,5 +16,3 @@ class AuthorSchema(AuthorBase):
 
     class Config:
         orm_mode = True
-
-

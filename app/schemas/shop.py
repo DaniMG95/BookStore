@@ -9,6 +9,7 @@ class StockSchema(BaseModel):
     class Config:
         orm_mode = True
 
+
 class ShopBase(BaseModel):
     name: str
     city: str
