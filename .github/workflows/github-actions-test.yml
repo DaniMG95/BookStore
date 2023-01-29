@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Use variables
       run: |
-        echo "ACCESS_TOKEN_EXPIRE_MINUTES : $API_KEY"
+        echo "ACCESS_TOKEN_EXPIRE_MINUTES : ${{ env.API_KEY }}"
         echo "SECRET_KEY : ${{ vars.SECRET_KEY }}"
 #    - uses: actions/checkout@v3
 #    - name: Set up Python 3.10
