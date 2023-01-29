@@ -4,8 +4,6 @@ on:
   pull_request:
     branches:
       - 'master'
-env:
-  env_var: ${{ vars.BookStore }}
 
 jobs:
   build:
@@ -13,8 +11,8 @@ jobs:
     steps:
     - name: Use variables
       run: |
-        echo "ACCESS_TOKEN_EXPIRE_MINUTES : ${{ vars.ACCESS_TOKEN_EXPIRE_MINUTES }}"
-        echo "SECRET_KEY : ${{ vars.SECRET_KEY }}"
+        echo "ACCESS_TOKEN_EXPIRE_MINUTES : ${{ ACCESS_TOKEN_EXPIRE_MINUTES }}"
+        echo "SECRET_KEY : ${{ SECRET_KEY }}"
 #    - uses: actions/checkout@v3
 #    - name: Set up Python 3.10
 #      uses: actions/setup-python@v3
