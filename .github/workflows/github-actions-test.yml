@@ -5,13 +5,17 @@ on:
     branches:
       - 'master'
 
+env:
+  ## Sets environment variable
+  API_KEY: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Use variables
       run: |
-        echo "ACCESS_TOKEN_EXPIRE_MINUTES : ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}"
+        echo "ACCESS_TOKEN_EXPIRE_MINUTES : $API_KEY"
         echo "SECRET_KEY : ${{ vars.SECRET_KEY }}"
 #    - uses: actions/checkout@v3
 #    - name: Set up Python 3.10
