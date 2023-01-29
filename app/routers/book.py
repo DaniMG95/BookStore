@@ -39,7 +39,7 @@ async def get_books(author: str = None, city: str = None, db: Session = Depends(
 
 
 @router.delete("/{book_id}")
-async def get_book(book_id: int, db: Session = Depends(get_db)):
+async def delete_book(book_id: int, db: Session = Depends(get_db)):
     await Book.remove_id(db=db, id=book_id)
     return {"details": "Book deleted"}
 

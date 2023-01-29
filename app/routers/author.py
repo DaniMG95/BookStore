@@ -31,6 +31,6 @@ async def get_all_authors(db: Session = Depends(get_db)):
 
 
 @router.delete("/{author_id}")
-async def get_author(author_id: int, db: Session = Depends(get_db)):
+async def delete_author(author_id: int, db: Session = Depends(get_db)):
     await Author.remove_id(db=db, id=author_id)
     return {"details": "Author deleted"}

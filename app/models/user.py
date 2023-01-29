@@ -8,7 +8,7 @@ from app.db import Base, book_users
 
 class User(Base, CrudBase):
     __tablename__ = "users"
-    __table_args__ = {'extend_existing': True}
+    __table_args__ = {"extend_existing": True}
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100))
@@ -32,4 +32,3 @@ class User(Base, CrudBase):
     @classmethod
     async def get_user_by_email(cls, email: str, db: Session):
         return db.query(cls).filter(cls.email == email).first()
-

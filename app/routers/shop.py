@@ -39,7 +39,7 @@ async def get_shops(title: str = None, author: str = None, db: Session = Depends
 
 
 @router.delete("/{shop_id}")
-async def get_shop(shop_id: int, db: Session = Depends(get_db)):
+async def delete_shop(shop_id: int, db: Session = Depends(get_db)):
     await Shop.remove_id(db=db, id=shop_id)
     return {"details": "Shop deleted"}
 
