@@ -23,4 +23,4 @@ jobs:
         flake8 . --count --select=B,C,E,F,W,T4,B9 --max-line-length=120 --max-complexity=18 --statistics
     - name: Test with unittest
       run: |
-        unittest
+        python -m unittest
