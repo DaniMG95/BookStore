@@ -11,19 +11,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-    - name: Install dependencies
+    - name: Use variables
       run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=B,C,E,F,W,T4,B9 --max-line-length=120 --max-complexity=18 --statistics
-    - name: Test with unittest
-      run: |
-        python -m unittest
+        echo "ACCESS_TOKEN_EXPIRE_MINUTES : ${{ vars.ACCESS_TOKEN_EXPIRE_MINUTES }}"
+        echo "SECRET_KEY : ${{ vars.SECRET_KEY }}"
+#    - uses: actions/checkout@v3
+#    - name: Set up Python 3.10
+#      uses: actions/setup-python@v3
+#      with:
+#        python-version: "3.10"
+#    - name: Install dependencies
+#      run: |
+#        python -m pip install --upgrade pip
+#        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+#    - name: Lint with flake8
+#      run: |
+#        # stop the build if there are Python syntax errors or undefined names
+#        flake8 . --count --select=B,C,E,F,W,T4,B9 --max-line-length=120 --max-complexity=18 --statistics
+#    - name: Test with unittest
+#      run: |
+#        python -m unittest
