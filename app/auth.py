@@ -15,7 +15,7 @@ from app.db import get_db
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="token",
-    scopes={"me": "Read information about the current user.", "items": "Read items."},
+    scopes={"me": "Read information about the current user.", "items": "Read items"},
 )
 
 
