@@ -16,8 +16,8 @@ jobs:
     - name: Use variables
       run: |
         echo 'Hi ${{ env.mascot }}'
-        echo 'repository variable : ${{ vars.ACCESS_TOKEN_EXPIRE_MINUTES }}'
-        echo 'repository variable : ${{ vars.SECRET_KEY }}'
+        echo 'repository variable : ${{ env.ACCESS_TOKEN_EXPIRE_MINUTES }}'
+        echo 'repository variable : ${{ env.SECRET_KEY }}'
 #    - uses: actions/checkout@v3
 #    - name: Set up Python 3.10
 #      uses: actions/setup-python@v3
