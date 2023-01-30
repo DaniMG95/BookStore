@@ -2,8 +2,8 @@ name: Test Application
 run-name: ${{ github.actor }} testing app
 on:
   pull_request:
-    branches:
-      - 'master'
+    branches: [master]
+    types: [opened, synchronize]
 
 env:
   ## Sets environment variable
