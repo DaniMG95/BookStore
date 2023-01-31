@@ -20,7 +20,7 @@ repos:
     hooks:
       - id: unittests
         name: run unit tests
-        entry: python -m unittest
+        entry: coverage run -m unittest
         language: system
         pass_filenames: false
         args: ["discover"]
