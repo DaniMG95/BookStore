@@ -42,3 +42,5 @@ jobs:
       with:
         coverageFile: coverage.xml
         token: ${{ secrets.API_TOKEN }}
+        thresholdAll: 0.90
+        thresholdNew: 0.95
