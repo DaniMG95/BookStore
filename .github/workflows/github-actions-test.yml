@@ -1,12 +1,13 @@
-name: Test Application
-run-name: ${{ github.actor }} testing app
+name: Test PR
+run-name: ${{ github.actor }} testing PR
 on:
   pull_request:
     branches: [master]
     types: [opened, synchronize]
 
 jobs:
-  build:
+  test-PR:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
