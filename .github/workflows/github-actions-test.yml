@@ -23,6 +23,15 @@ jobs:
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=B,C,E,F,W,T4,B9 --max-line-length=120 --max-complexity=18 --statistics
+    - name: Test with unittest1
+      uses: onichandame/python-test-action@master
+      env:
+        SECRET_KEY: ${{ vars.SECRET_KEY }}
+        ALGORITHM: ${{ vars.ALGORITHM }}
+        ACCESS_TOKEN_EXPIRE_MINUTES: ${{ vars.ACCESS_TOKEN_EXPIRE_MINUTES }}
+        HOST_DB: ${{ vars.HOST_DB }}
+        USER_DB: ${{ vars.USER_DB }}
+        PASSWORD_DB: ${{ vars.PASSWORD_DB }}
     - name: Test with unittest
       env:
         SECRET_KEY: ${{ vars.SECRET_KEY }}
@@ -31,8 +40,6 @@ jobs:
         HOST_DB: ${{ vars.HOST_DB }}
         USER_DB: ${{ vars.USER_DB }}
         PASSWORD_DB: ${{ vars.PASSWORD_DB }}
-    - name: Test
-      uses: onichandame/python-test-action@master
       run: |
         coverage run -m unittest discover
     - name: Generate xml Coverage
