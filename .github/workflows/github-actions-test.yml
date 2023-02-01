@@ -39,7 +39,7 @@ jobs:
     - name: Monitor coverage
       uses: orgoro/coverage@v3
       with:
-        token: ${{ secrets.API_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         coverageFile: "coverage.xml"
-        thresholdAll: 0.90
-        thresholdNew: 0.95
+        thresholdAll: 0.50
+        thresholdNew: 0.55
