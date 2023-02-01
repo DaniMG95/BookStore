@@ -37,10 +37,11 @@ jobs:
     - name: Generate xml Coverage
       run: |
         coverage xml
-    - name: Python Coverage
-      uses: orgoro/coverage@v3
+    - name: Monitor coverage
+      if: ! contains(github.event.pull_request.user.login, 'dependabot[bot]')
+      uses: slavcodev/coverage-monitor-action@v1
       with:
-        coverageFile: coverage.xml
-        token: ${{ github.token }}
-        thresholdAll: 0.90
-        thresholdNew: 0.95
+        coverage_path: coverage.xml
+        github_token: ${{ secrets.API_TOKEN }}
+        threshold_alert: 0.90
+        threshold_warning: 0.95
