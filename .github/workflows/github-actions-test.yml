@@ -35,11 +35,12 @@ jobs:
     - name: Generate xml Coverage
       run: |
         coverage xml
+        coverage2clover -i coverage.xml -o clover.xml
     - name: Monitor coverage
       uses: slavcodev/coverage-monitor-action@v1
       with:
         github_token: ${{ secrets.API_TOKEN }}
-        coverage_path: "coverage.xml"
+        coverage_path: "clover.xml"
         threshold_alert: 10
         threshold_warning: 50
         threshold_metric: "lines"
