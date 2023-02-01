@@ -1,5 +1,5 @@
 from unittest import TestCase
-from app.auth import verify_password
+from app.auth import verify_password, pr
 
 
 class TestAuth(TestCase):
@@ -18,3 +18,6 @@ class TestAuth(TestCase):
         verify = verify_password(hashed_password=hash_password, plain_password=password)
 
         self.assertFalse(verify)
+
+    def test_pr(self):
+        self.assertEqual(pr(), "dsasasd")
