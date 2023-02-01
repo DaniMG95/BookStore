@@ -25,6 +25,13 @@ repos:
         language: system
         pass_filenames: false
         args: ["discover"]
+-   repo: local
+    hooks:
+      - id: unittests
+        name: generate monitor coverage
+        entry: coverage html
+        language: system
+        pass_filenames: false
 -   repo: https://github.com/radix-ai/auto-smart-commit
     rev: v1.0.2
     hooks:
