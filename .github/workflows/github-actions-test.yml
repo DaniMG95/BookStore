@@ -1,21 +1,13 @@
-name: Test Application
-run-name: ${{ github.actor }} testing app
+name: Test PR
+run-name: ${{ github.actor }} testing PR
 on:
   pull_request:
     branches: [master]
     types: [opened, synchronize]
 
-env:
-  ## Sets environment variable
-  SECRET_KEY: ${{ vars.SECRET_KEY }}
-  ALGORITHM: ${{ vars.ALGORITHM }}
-  ACCESS_TOKEN_EXPIRE_MINUTES: ${{ vars.ACCESS_TOKEN_EXPIRE_MINUTES }}
-  HOST_DB: ${{ vars.HOST_DB }}
-  USER_DB: ${{ vars.USER_DB }}
-  PASSWORD_DB: ${{ vars.PASSWORD_DB }}
-
 jobs:
-  build:
+  test-PR:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -32,15 +24,22 @@ jobs:
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=B,C,E,F,W,T4,B9 --max-line-length=120 --max-complexity=18 --statistics
     - name: Test with unittest
+      env:
+        SECRET_KEY: ${{ vars.SECRET_KEY }}
+        ALGORITHM: ${{ vars.ALGORITHM }}
+        ACCESS_TOKEN_EXPIRE_MINUTES: ${{ vars.ACCESS_TOKEN_EXPIRE_MINUTES }}
+        HOST_DB: ${{ vars.HOST_DB }}
+        USER_DB: ${{ vars.USER_DB }}
+        PASSWORD_DB: ${{ vars.PASSWORD_DB }}
       run: |
         coverage run -m unittest discover
     - name: Generate xml Coverage
       run: |
         coverage xml
-    - name: Python Coverage
+    - name: Monitor coverage
       uses: orgoro/coverage@v3
       with:
-        coverageFile: coverage.xml
         token: ${{ secrets.API_TOKEN }}
+        coverageFile: "coverage.xml"
         thresholdAll: 0.90
         thresholdNew: 0.95
