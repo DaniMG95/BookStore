@@ -41,5 +41,5 @@ jobs:
       with:
         token: ${{ secrets.API_TOKEN }}
         coverageFile: "coverage.xml"
-        thresholdAll: 90
-        thresholdNew: 55
+        thresholdAll: 0.90
+        thresholdNew: 0.95
