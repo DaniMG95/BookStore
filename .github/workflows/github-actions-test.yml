@@ -38,7 +38,7 @@ jobs:
     - name: Monitor coverage
       uses: slavcodev/coverage-monitor-action@v1
       with:
-        coverage_path: coverage.xml
+        coverage_path: "coverage.xml"
         github_token: ${{ secrets.API_TOKEN }}
         threshold_alert: 0.90
         threshold_warning: 0.95
