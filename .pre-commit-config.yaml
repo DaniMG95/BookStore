@@ -17,6 +17,7 @@ repos:
     hooks:
     - id: no-commit-to-branch
     - id: detect-private-key
+      stages: [commit]
 -   repo: local
     hooks:
       - id: unittests
@@ -25,6 +26,7 @@ repos:
         language: system
         pass_filenames: false
         args: ["discover"]
+        stages: [commit]
 -   repo: local
     hooks:
       - id: unittests
@@ -32,7 +34,9 @@ repos:
         entry: coverage html
         language: system
         pass_filenames: false
+        stages: [commit]
 -   repo: https://github.com/radix-ai/auto-smart-commit
     rev: v1.0.2
     hooks:
       - id: auto-smart-commit
+        stages: [prepare-commit-msg]
