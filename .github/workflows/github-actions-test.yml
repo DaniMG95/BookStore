@@ -33,10 +33,10 @@ jobs:
         PASSWORD_DB: ${{ vars.PASSWORD_DB }}
       run: |
         coverage run -m unittest discover
-        coverage2clover -i coverage.xml -o clover.xml
     - name: Generate xml Coverage
       run: |
         coverage xml
+        coverage2clover -i coverage.xml -o clover.xml
 #    - name: Monitor coverage
 #      uses: orgoro/coverage@v3
 #      with:
