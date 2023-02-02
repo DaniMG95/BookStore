@@ -36,7 +36,6 @@ jobs:
     - name: Generate xml Coverage
       run: |
         coverage xml
-        coverage2clover -i coverage.xml -o clover.xml
     - name: Monitor coverage
       uses: slavcodev/coverage-monitor-action@v1
       with:
