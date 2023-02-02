@@ -33,13 +33,21 @@ jobs:
         PASSWORD_DB: ${{ vars.PASSWORD_DB }}
       run: |
         coverage run -m unittest discover
+        coverage2clover -i coverage.xml -o clover.xml
     - name: Generate xml Coverage
       run: |
         coverage xml
+#    - name: Monitor coverage
+#      uses: orgoro/coverage@v3
+#      with:
+#        token: ${{ secrets.API_TOKEN }}
+#        coverageFile: "coverage.xml"
+#        thresholdAll: 0.90
+#        thresholdNew: 0.95
     - name: Monitor coverage
-      uses: orgoro/coverage@v3
+      uses: slavcodev/coverage-monitor-action@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        coverageFile: "coverage.xml"
-        thresholdAll: 0.50
-        thresholdNew: 0.55
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        coverage_path: "clover.xml"
+        threshold_alert: 90
+        threshold_warning: 80
