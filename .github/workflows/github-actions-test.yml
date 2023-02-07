@@ -9,6 +9,15 @@ jobs:
   test-PR:
     permissions: write-all
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: mysql
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: db
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
@@ -28,9 +37,9 @@ jobs:
         SECRET_KEY: ${{ vars.SECRET_KEY }}
         ALGORITHM: ${{ vars.ALGORITHM }}
         ACCESS_TOKEN_EXPIRE_MINUTES: ${{ vars.ACCESS_TOKEN_EXPIRE_MINUTES }}
-        HOST_DB: ${{ vars.HOST_DB }}
-        USER_DB: ${{ vars.USER_DB }}
-        PASSWORD_DB: ${{ vars.PASSWORD_DB }}
+        HOST_DB: localhost
+        USER_DB: root
+        PASSWORD_DB: ""
       run: |
         coverage run -m unittest discover
     - name: Generate xml Coverage
