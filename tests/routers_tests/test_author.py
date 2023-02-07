@@ -1,6 +1,6 @@
 from unittest import TestCase
 from fastapi.testclient import TestClient
-from app.app import app
+from app.main import app
 from app.models.author import Author
 from unittest.mock import patch
 
