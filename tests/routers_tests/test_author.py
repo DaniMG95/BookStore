@@ -18,3 +18,9 @@ class TestAuthor(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), expected_author)
+
+    def test_write_main(self):
+
+        response = self.client.post("/author", json={"name": "sdasaddsasda"})
+
+        self.assertEqual(response.status_code, 200)
