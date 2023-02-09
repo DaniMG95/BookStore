@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, Security
-
 from app.auth import get_current_active_user, get_password_hash
 from app.schemas.user import UserCreate, UserSchema
 from sqlalchemy.orm import Session
