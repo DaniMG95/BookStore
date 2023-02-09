@@ -1,0 +1,16 @@
+name: Deploy Master
+run-name: ${{ github.actor }} testing PR
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Version
+        id: version
+        uses: juliansangillo/tag-version@v1
+        with:
+          production-branch: master
