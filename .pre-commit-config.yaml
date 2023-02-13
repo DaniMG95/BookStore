@@ -18,23 +18,23 @@ repos:
     - id: no-commit-to-branch
     - id: detect-private-key
       stages: [commit]
-#-   repo: local
-#    hooks:
-#      - id: unittests
-#        name: run unit tests
-#        entry: coverage run -m unittest
-#        language: system
-#        pass_filenames: false
-#        args: ["discover"]
-#        stages: [commit]
-#-   repo: local
-#    hooks:
-#      - id: unittests
-#        name: generate monitor coverage
-#        entry: coverage html
-#        language: system
-#        pass_filenames: false
-#        stages: [commit]
+-   repo: local
+    hooks:
+      - id: unittests
+        name: run unit tests
+        entry: coverage run -m unittest
+        language: system
+        pass_filenames: false
+        args: ["discover"]
+        stages: [commit]
+-   repo: local
+    hooks:
+      - id: unittests
+        name: generate monitor coverage
+        entry: coverage html
+        language: system
+        pass_filenames: false
+        stages: [commit]
 -   repo: local
     hooks:
       - id: auto-commit-message
