@@ -8,3 +8,8 @@ Base.metadata.create_all(bind=engine)
 
 for router in [author, book, shop, user, token]:
     app.include_router(router.router)
+
+saddsa = 34342
+sad = 44
+sddsasa = 3434
+sadsdsa = 45
