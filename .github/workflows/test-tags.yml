@@ -1,0 +1,21 @@
+name: Test PR
+run-name: ${{ github.head_ref }} testing PR
+on:
+  push:
+    branches: [master]
+
+jobs:
+  test-tags:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Version
+        id: version
+        uses: juliansangillo/tag-version@v1
+        with:
+          production-branch: master
