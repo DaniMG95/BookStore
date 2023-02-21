@@ -35,11 +35,3 @@ repos:
         language: system
         pass_filenames: false
         stages: [commit]
--   repo: local
-    hooks:
-      - id: auto-commit-message
-        name: generate commit message
-        entry: .githooks/prepare-commit-msg.py
-        language: script
-        stages: [prepare-commit-msg]
-        always_run: true

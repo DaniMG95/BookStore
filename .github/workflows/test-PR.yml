@@ -1,5 +1,5 @@
 name: Test PR
-run-name: ${{ github.actor }} testing PR
+run-name: ${{ github.head_ref }} testing PR
 on:
   pull_request:
     branches: [master]
