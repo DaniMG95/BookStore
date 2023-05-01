@@ -1,21 +1,22 @@
-name: Test PR
-run-name: ${{ github.head_ref }} testing PR
-on:
+on: 
   push:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
-  test-tags:
-    permissions: write-all
+  release-on-push:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - id: release
+        uses: rymndhng/release-on-push-action@master
         with:
-          fetch-depth: 0
-
-      - name: Version
-        id: version
-        uses: juliansangillo/tag-version@v1
-        with:
-          production-branch: master
+          bump_version_scheme: major
+          tag_prefix: v
+          
+      - name: Check Output Parameters
+        run: |
+          echo "Got tag name ${{ steps.release.outputs.tag_name }}"
+          echo "Got release version ${{ steps.release.outputs.version }}"
+          echo "Upload release artifacts to ${{ steps.release.outputs.upload_url }}"
