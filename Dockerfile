@@ -9,4 +9,4 @@ ENV ACCESS_TOKEN_EXPIRE_MINUTES=30
 ENV HOST_DB=sql_book
 ENV USER_DB=root
 ENV PASSWORD_DB=12345
-CMD ["uvicorn", "app.app:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
