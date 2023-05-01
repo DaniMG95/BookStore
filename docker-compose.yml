@@ -11,8 +11,6 @@ services:
         condition: service_started
   sql_book:
     image: "mysql"
-    volumes:
-      - C:\Users\dani_\Documents\db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 12345
       MYSQL_DATABASE: db

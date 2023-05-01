@@ -16,6 +16,7 @@ jobs:
       - name: Build the Docker image
         run: docker-compose build --no-cache --force-rm
   test:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,6 +24,7 @@ jobs:
         run: docker-compose up -d
 
   release-on-push:
+    needs: [build, test]
     runs-on: ubuntu-latest
     steps:
       - id: release
