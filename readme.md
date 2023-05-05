@@ -9,7 +9,7 @@ docker run -d --name bookapi --net book-net -p 80:80 bookapi
 ```
 
 
-## Deploy docker compose
+## Deploy dockers compose
 
 ```
 docker compose up
