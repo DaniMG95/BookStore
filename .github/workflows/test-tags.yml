@@ -1,4 +1,5 @@
-
+name: Create New Release
+run-name: ${{ github.head_ref }} Create New Release
 on: 
   push:
     branches:
